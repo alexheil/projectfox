@@ -5,3 +5,7 @@ hello this works
 or
 
 <%= link_to 'sign in', new_user_session_path %>
+
+<% if user_signed_in? %>
+  <%= current_user.username %>
+<% end %>
