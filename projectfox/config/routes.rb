@@ -8,4 +8,12 @@ Rails.application.routes.draw do
     get 'sign_out', to: 'users/sessions#destroy'
   end
 
+  resources :cities, controller: 'cities/cities' do
+    resources :places, controller: 'cities/places', except: :index do
+      resources :pins, controller: 'pins/pins', only: [:create]
+    end
+    #resources :landmarks, controller: 'cities/landmarks', except: :index do
+    #  resources :pins, controller: 'pins/pins', only: [:create]
+    #end
+  end
 end
