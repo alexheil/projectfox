@@ -8,4 +8,5 @@ or
 
 <% if user_signed_in? %>
   <%= current_user.username %>
+  <%= current_user.current_sign_in_ip %>
 <% end %>
