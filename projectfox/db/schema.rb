@@ -10,7 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180621194604) do
+ActiveRecord::Schema.define(version: 20180622194937) do
+
+  create_table "cities", force: :cascade do |t|
+    t.string   "title"
+    t.string   "image"
+    t.string   "state"
+    t.string   "country"
+    t.string   "county"
+    t.string   "incorporated"
+    t.string   "population"
+    t.string   "slug"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "pins", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "place_id"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.integer  "points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["place_id"], name: "index_pins_on_place_id"
+    t.index ["user_id"], name: "index_pins_on_user_id"
+  end
+
+  create_table "places", force: :cascade do |t|
+    t.integer  "city_id"
+    t.string   "title"
+    t.string   "address"
+    t.string   "phone_number"
+    t.integer  "type"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.string   "latitude_range"
+    t.string   "longitude_range"
+    t.integer  "points"
+    t.string   "slug"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["city_id"], name: "index_places_on_city_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username",               default: "",   null: false
